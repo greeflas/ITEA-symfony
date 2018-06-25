@@ -1,0 +1,9 @@
+{% include 'base.html.twig' %}
+
+{% block body %}
+    <h1>Contacts page</h1>
+
+    <p>{{ contacts.quote }}</p>
+
+    <a href="mailto:{{ contacts.email }}">{{ contacts.email }}</a>
+{% endblock %}
