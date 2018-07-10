@@ -33,7 +33,7 @@ class DefaultController extends AbstractController
             $this->messageGenerator->generate()
         );
 
-        return $this->render('default/index.html.twig', [
+        return $this->render('default/contacts.html.twig', [
             'contacts' => $model,
         ]);
     }
