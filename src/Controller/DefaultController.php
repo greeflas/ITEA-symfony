@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Quote;
 use App\Model\ContactsPage;
+use App\Repository\QuoteRepository;
 use App\Service\MessageGenerator;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -44,16 +45,15 @@ class DefaultController extends AbstractController
         $manager = $this->getDoctrine()->getManager();
 
 //        $model = new Quote();
-//        $model->setMessage('Lorem Ipsum is simply dummy!');
+//        $model->setMessage('Lorem Ipsum is simply.');
 //
 //        $manager->persist($model);
 //        $manager->flush();
 
-        $model = $manager->getRepository(Quote::class)
-            ->find(1);
+        /** @var QuoteRepository $repository */
+        $repository =  $manager->getRepository(Quote::class);
+        $quote = $repository->getFirstQuote();
 
-        return $this->render('default/quotes.html.twig', [
-            'quote' => $model,
-        ]);
+        return new Response($quote);
     }
 }
