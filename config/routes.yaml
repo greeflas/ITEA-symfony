@@ -5,3 +5,7 @@ index:
 contacts:
     path: /contacts
     controller: App\Controller\DefaultController::contacts
+
+quoutes:
+    path: /quotes
+    controller: App\Controller\DefaultController::quotes

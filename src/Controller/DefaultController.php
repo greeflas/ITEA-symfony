@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Quote;
 use App\Model\ContactsPage;
 use App\Service\MessageGenerator;
 use Psr\Log\LoggerInterface;
@@ -35,6 +36,24 @@ class DefaultController extends AbstractController
 
         return $this->render('default/contacts.html.twig', [
             'contacts' => $model,
+        ]);
+    }
+
+    public function quotes()
+    {
+        $manager = $this->getDoctrine()->getManager();
+
+//        $model = new Quote();
+//        $model->setMessage('Lorem Ipsum is simply dummy!');
+//
+//        $manager->persist($model);
+//        $manager->flush();
+
+        $model = $manager->getRepository(Quote::class)
+            ->find(1);
+
+        return $this->render('default/quotes.html.twig', [
+            'quote' => $model,
         ]);
     }
 }
