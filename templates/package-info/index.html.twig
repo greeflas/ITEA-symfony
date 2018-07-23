@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+{% if packageInfo is not defined %}
+    <h1>Package <b>{{ packageName }}</b> does not exist!</h1>
+{% else %}
+    <h1>{{ packageInfo.name }}</h1>
+    <dl>
+        <dt><b>Daily:</b></dt>
+        <dd>{{ packageInfo.getDownloadsDaily() }}</dd>
+
+        <dt><b>Monthly:</b></dt>
+        <dd>{{ packageInfo.getDownloadsMonthly() }}</dd>
+
+        <dt><b>Total:</b></dt>
+        <dd>{{ packageInfo.getDownloadsTotal() }}</dd>
+    </dl>
+{% endif %}
+{% endblock %}

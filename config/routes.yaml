@@ -9,3 +9,9 @@ contacts:
 quoutes:
     path: /quotes
     controller: App\Controller\DefaultController::quotes
+
+packagist:
+    path: /package-info/{name}
+    requirements:
+        name: .+
+    controller: App\Controller\PackageInfoController::index
