@@ -1,17 +1,17 @@
 index:
     path: /
-    controller: App\Controller\DefaultController::index
+    controller: App\Controller\Web\DefaultController::index
 
 contacts:
     path: /contacts
-    controller: App\Controller\DefaultController::contacts
+    controller: App\Controller\Web\DefaultController::contacts
 
 quoutes:
     path: /quotes
-    controller: App\Controller\DefaultController::quotes
+    controller: App\Controller\Web\DefaultController::quotes
 
 packagist:
     path: /package-info/{name}
     requirements:
         name: .+
-    controller: App\Controller\PackageInfoController::index
+    controller: App\Controller\Web\PackageInfoController::index

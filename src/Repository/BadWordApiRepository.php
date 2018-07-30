@@ -2,23 +2,23 @@
 
 namespace App\Repository;
 
-use GuzzleHttp\Client;
+use GuzzleHttp\ClientInterface;
 
 class BadWordApiRepository
 {
+    private $client;
     private $apiEndpoint;
 
-    public function __construct(string $endpoint)
+    public function __construct(ClientInterface $client, string $endpoint)
     {
+        $this->client = $client;
         $this->apiEndpoint = $endpoint;
     }
 
     public function save($badWords)
     {
-        $client = new Client();
-
         foreach ($badWords as $badWord) {
-            $client->post($this->apiEndpoint, [
+            $this->client->post($this->apiEndpoint, [
                 'body' => [
                     'bad_word' => $badWord,
                 ]

@@ -27,6 +27,12 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+    guzzle.client:
+        class: GuzzleHttp\Client
+
     App\Repository\BadWordApiRepository:
         arguments:
+            - '@guzzle.client'
             - '%app.bad_words_api_endpoint%'
+
+    GuzzleHttp\Client: '@guzzle.client'
