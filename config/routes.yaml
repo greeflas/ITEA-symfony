@@ -15,3 +15,11 @@ packagist:
     requirements:
         name: .+
     controller: App\Controller\Web\PackageInfoController::index
+
+user_create:
+    path: /user/create
+    controller: App\Controller\Web\UserController:create
+
+user_info:
+    path: /user/info/{id}
+    controller: App\Controller\Web\UserController:info

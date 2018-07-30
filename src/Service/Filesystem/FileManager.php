@@ -13,16 +13,18 @@ class FileManager
     public function __construct(FileNameInterface $fileName, string $uploadDir)
     {
         $this->fileName = $fileName;
+        $this->uploadDir = $uploadDir;
     }
 
-    public function upload(UploadedFile $file): bool
+    public function upload(UploadedFile $file): ?string
     {
         try {
-            $file->move($this->uploadDir, $this->fileName->getName($file->getClientOriginalName()));
+            $newFileName = $this->fileName->getName($file->getClientOriginalName());
+            $file->move($this->uploadDir, $newFileName);
 
-            return true;
+            return $newFileName;
         } catch (FileException $e) {
-            return false;
+            return null;
         }
     }
 }

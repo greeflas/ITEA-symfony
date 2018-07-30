@@ -43,13 +43,16 @@ services:
             - '@app.filesystem.file_name'
             - '%app.uploads_dir%'
 
+#    app.filesystem.file_name:
+#        class: App\Service\Filesystem\OriginalName
+#        arguments:
+#            - '%app.uploads_file_prefix%'
+
     app.filesystem.file_name:
-        class: App\Service\Filesystem\OriginalName
-        arguments:
-            - '%app.uploads_file_prefix%'
+        class: App\Service\Filesystem\Md5FileName
 
     # Aliases
     GuzzleHttp\Client: '@guzzle.client'
-    App\Service\Filesystem\OriginalName: '@app.filesystem.file_name'
+    App\Service\Filesystem\Md5FileName: '@app.filesystem.file_name'
 
 
