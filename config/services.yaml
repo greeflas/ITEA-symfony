@@ -4,6 +4,7 @@ parameters:
     locale: 'en'
     app.bad_words_api_endpoint: '%env(BAD_WORDS_API_ENDPOINT)%'
     app.uploads_dir: '%kernel.project_dir%/public/uploads/'
+    app.uploads_file_prefix: 'file_'
 
 services:
     # default configuration for services in *this* file
@@ -42,8 +43,13 @@ services:
             - '@app.filesystem.file_name'
             - '%app.uploads_dir%'
 
+    app.filesystem.file_name:
+        class: App\Service\Filesystem\OriginalName
+        arguments:
+            - '%app.uploads_file_prefix%'
+
     # Aliases
     GuzzleHttp\Client: '@guzzle.client'
-    App\Service\Filesystem\Md5FileName: '@app.filesystem.file_name'
+    App\Service\Filesystem\OriginalName: '@app.filesystem.file_name'
 
 
